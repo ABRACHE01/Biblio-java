@@ -1,0 +1,41 @@
+CREATE TABLE authors  (
+    id INT,
+    name VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+
+CREATE TABLE book (
+    isbn INT,
+    title VARCHAR(255),
+    quantity INT,
+    author_id INT,
+    PRIMARY KEY (isbn),
+    FOREIGN KEY (author_id) REFERENCES authors(id)
+);
+
+
+CREATE TABLE bookcopy (
+    id INT,
+    status ENUM('borrowed', 'available', 'lost'),
+    book_id INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (book_id) REFERENCES book(isbn)
+);
+
+CREATE TABLE client (
+    member_number INT,
+    client_name VARCHAR(255),
+    PRIMARY KEY (member_number)
+);
+
+CREATE TABLE reservation (
+    reservation_id INT,
+    copy_id INT,
+    member_number INT,
+    date_of_borrowing DATE,
+    date_of_return DATE,
+    PRIMARY KEY (reservation_id),
+    FOREIGN KEY (copy_id) REFERENCES bookcopy(id),
+    FOREIGN KEY (member_number) REFERENCES client(member_number)
+);
