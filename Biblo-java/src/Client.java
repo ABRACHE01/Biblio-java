@@ -1,6 +1,12 @@
+import java.util.ArrayList;
 public class Client {
     private int member_number ;
     private String client_name ;
+    private ArrayList<Reservation> reservations;
+
+    public Client(){
+
+    }
 
     public Client(int member_number , String client_name ){
         this.member_number = member_number ;
@@ -21,5 +27,13 @@ public class Client {
 
     public void setClient_name(String client_name) {
         this.client_name = client_name;
+    }
+
+    public ArrayList<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(ArrayList<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

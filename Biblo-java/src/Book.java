@@ -1,50 +1,59 @@
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 public class Book {
     private int isbn;
     private String title;
     private int countity ;
-    private ArrayList<Author> author;
+    private Author author;
+    private ArrayList<BookCopy> bookCopy;
+    public Book(){
 
-    public Book(int isbn , String title , int countity , ArrayList<Author> author){
-
-        this.isbn =  isbn ;
-        this.title =  title ;
-        this.countity = countity ;
+    }
+    public Book(int isbn , String title , int countity ){
+        this.setIsbn(isbn);
+        this.setTitle(title);
+        this.setCountity(countity);
     }
 
-    //ISBN getter and setter
+
     public int getIsbn() {
         return isbn;
     }
-    public void setIsbn(int newIsbn) {
-        this.isbn = newIsbn;
+
+    public void setIsbn(int isbn) {
+        this.isbn = isbn;
     }
 
-    //title getter and setter
     public String getTitle() {
         return title;
     }
-    public void setTitle(String newTitle) {
-        this.title = newTitle;
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    //Countity getter and setter
     public int getCountity() {
         return countity;
     }
-    public void setCountity(int newCountity) {
-        this.countity = newCountity;
+
+    public void setCountity(int countity) {
+        this.countity = countity;
     }
 
-    //Author
-    public ArrayList<Author> getAuthor() {
+
+    public ArrayList<BookCopy> getBookCopy() {
+        return bookCopy;
+    }
+
+    public void setBookCopy(ArrayList<BookCopy> bookCopy) {
+        this.bookCopy = bookCopy;
+    }
+
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(ArrayList<Author> author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
-
-
 }

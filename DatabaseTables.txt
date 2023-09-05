@@ -6,11 +6,12 @@ CREATE TABLE authors  (
 
 
 CREATE TABLE book (
+    id INT,	
     isbn INT,
     title VARCHAR(255),
     quantity INT,
     author_id INT,
-    PRIMARY KEY (isbn),
+    PRIMARY KEY (id),
     FOREIGN KEY (author_id) REFERENCES authors(id)
 );
 
@@ -20,7 +21,7 @@ CREATE TABLE bookcopy (
     status ENUM('borrowed', 'available', 'lost'),
     book_id INT,
     PRIMARY KEY (id),
-    FOREIGN KEY (book_id) REFERENCES book(isbn)
+    FOREIGN KEY (book_id) REFERENCES book(id)
 );
 
 CREATE TABLE client (

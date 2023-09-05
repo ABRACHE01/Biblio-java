@@ -5729,19 +5729,19 @@
 									"subViews": [
 										{
 											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGKUYcI8NTk/10=",
+											"_id": "AAAAAAGKUYcmTtVQVL0=",
 											"_parent": {
 												"$ref": "AAAAAAGKUYZxXdO8EjE="
 											},
 											"model": {
-												"$ref": "AAAAAAGKUYcIpNTbmG8="
+												"$ref": "AAAAAAGKUYcmGtVHW1U="
 											},
 											"font": "Arial;13;0",
 											"left": 1277,
 											"top": 334,
 											"width": 135,
 											"height": 13,
-											"text": "+id",
+											"text": "+member_number",
 											"horizontalAlignment": 0
 										},
 										{
@@ -5760,30 +5760,13 @@
 											"height": 13,
 											"text": "+client_name",
 											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGKUYcmTtVQVL0=",
-											"_parent": {
-												"$ref": "AAAAAAGKUYZxXdO8EjE="
-											},
-											"model": {
-												"$ref": "AAAAAAGKUYcmGtVHW1U="
-											},
-											"font": "Arial;13;0",
-											"left": 1277,
-											"top": 364,
-											"width": 135,
-											"height": 13,
-											"text": "+member_number",
-											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1272,
 									"top": 329,
 									"width": 145,
-									"height": 53
+									"height": 38
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -5796,7 +5779,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1272,
-									"top": 382,
+									"top": 367,
 									"width": 145,
 									"height": 10
 								},
@@ -7651,11 +7634,11 @@
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
-							"_id": "AAAAAAGKUYcIpNTbmG8=",
+							"_id": "AAAAAAGKUYcmGtVHW1U=",
 							"_parent": {
 								"$ref": "AAAAAAGKUYZxXdO0Y6Q="
 							},
-							"name": "id",
+							"name": "member_number",
 							"type": ""
 						},
 						{
@@ -7665,15 +7648,6 @@
 								"$ref": "AAAAAAGKUYZxXdO0Y6Q="
 							},
 							"name": "client_name",
-							"type": ""
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAGKUYcmGtVHW1U=",
-							"_parent": {
-								"$ref": "AAAAAAGKUYZxXdO0Y6Q="
-							},
-							"name": "member_number",
 							"type": ""
 						}
 					]
