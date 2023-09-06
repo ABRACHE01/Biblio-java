@@ -1,3 +1,7 @@
+package Domain;
+
+import Domain.Enum.Status;
+
 import java.util.ArrayList;
 
 public class BookCopy {
@@ -6,7 +10,6 @@ public class BookCopy {
 
     private Book book ;
 
-    private ArrayList<Reservation> reservations;
 
 
     public BookCopy(){
@@ -31,20 +34,20 @@ public class BookCopy {
     public void setStatus(Status newStatus){
         this.status = newStatus ;
     }
-
-    public ArrayList<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(ArrayList<Reservation> reservations) {
-        this.reservations = reservations;
-    }
-
     public Book getBook() {
         return book;
     }
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    @Override
+    public String toString() {
+        return "BookCopy{" +
+                "id=" + id +
+                ", status=" + status +
+                ", book=" + book.getTitle() +
+                '}';
     }
 }

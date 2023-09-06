@@ -1,18 +1,19 @@
+package Domain;
 
 import java.util.ArrayList;
 public class Book {
     private int isbn;
     private String title;
     private int countity ;
-    private Author author;
-    private ArrayList<BookCopy> bookCopy;
+    private String author;
     public Book(){
 
     }
-    public Book(int isbn , String title , int countity ){
+    public Book(int isbn , String title , int countity , String author ){
         this.setIsbn(isbn);
         this.setTitle(title);
         this.setCountity(countity);
+        this.setAuthor(author);
     }
 
 
@@ -41,19 +42,22 @@ public class Book {
     }
 
 
-    public ArrayList<BookCopy> getBookCopy() {
-        return bookCopy;
+
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "isbn=" + isbn +
+                ", title='" + title + '\'' +
+                ", countity=" + countity +
+                '}';
     }
 
-    public void setBookCopy(ArrayList<BookCopy> bookCopy) {
-        this.bookCopy = bookCopy;
-    }
-
-    public Author getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 }

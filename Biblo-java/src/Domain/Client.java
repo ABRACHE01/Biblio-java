@@ -1,8 +1,9 @@
+package Domain;
+
 import java.util.ArrayList;
 public class Client {
     private int member_number ;
     private String client_name ;
-    private ArrayList<Reservation> reservations;
 
     public Client(){
 
@@ -29,11 +30,12 @@ public class Client {
         this.client_name = client_name;
     }
 
-    public ArrayList<Reservation> getReservations() {
-        return reservations;
-    }
 
-    public void setReservations(ArrayList<Reservation> reservations) {
-        this.reservations = reservations;
+    @Override
+    public String toString() {
+        return "Client{" +
+                "member_number=" + member_number +
+                ", client_name='" + client_name + '\'' +
+                '}';
     }
 }
