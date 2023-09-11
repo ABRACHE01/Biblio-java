@@ -14,7 +14,7 @@ public class BookRepository {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO book (isbn, title, quantity, author) VALUES (?, ?, ?, ?)");
             statement.setInt(1, book.getIsbn());
             statement.setString(2, book.getTitle());
-            statement.setInt(3, book.getCountity());
+            statement.setInt(3, book.getQuantity());
             statement.setString(4, book.getAuthor());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -50,7 +50,7 @@ public class BookRepository {
         try (Connection connection = MyJDBC.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("UPDATE book SET title = ?, quantity = ?, author = ? WHERE isbn = ?");
             statement.setString(1, book.getTitle());
-            statement.setInt(2, book.getCountity());
+            statement.setInt(2, book.getQuantity());
             statement.setString(3, book.getAuthor());
             statement.setInt(4, book.getIsbn());
             statement.executeUpdate();

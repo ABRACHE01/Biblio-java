@@ -1,7 +1,7 @@
 package Domain.Enum;
 
 public enum Status {
-    AVAILABLE,
+    AVAILABLE ,
     BORROWED,
     LOST
 }

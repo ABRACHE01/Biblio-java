@@ -1,6 +1,7 @@
 package Service;
 
 import Domain.Book;
+import Domain.Enum.Status;
 import Repository.BookRepository;
 
 import java.util.List;
@@ -30,5 +31,9 @@ public class BookService {
 
     public List<Book> searchBooks(String key) {
         return bookRepository.searchBooks(key);
+    }
+
+    public int getBookCountByStatus(Status status) {
+       return  ReservationService.getBookCountByStatus(status);
     }
 }
