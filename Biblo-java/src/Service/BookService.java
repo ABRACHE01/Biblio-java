@@ -27,4 +27,8 @@ public class BookService {
     public void deleteBook(int isbn) {
         bookRepository.deleteBook(isbn);
     }
+
+    public List<Book> searchBooks(String key) {
+        return bookRepository.searchBooks(key);
+    }
 }

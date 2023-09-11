@@ -24,6 +24,28 @@ public class BookRepository {
         return getAllBooks();
     }
 
+    public List<Book> searchBooks(String keyword) {
+        List<Book> books = new ArrayList<>();
+        try (Connection connection = MyJDBC.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM book WHERE title LIKE ? OR author LIKE ?");
+            statement.setString(1, "%" + keyword + "%");
+            statement.setString(2, "%" + keyword + "%");
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                int isbn = resultSet.getInt("isbn");
+                String title = resultSet.getString("title");
+                int quantity = resultSet.getInt("quantity");
+                String author = resultSet.getString("author");
+
+                Book book = new Book(isbn, title, quantity, author);
+                books.add(book);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return books;
+    }
     public void updateBook(Book book) {
         try (Connection connection = MyJDBC.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("UPDATE book SET title = ?, quantity = ?, author = ? WHERE isbn = ?");
@@ -69,5 +91,6 @@ public class BookRepository {
 
         return books;
     }
+
 
 }

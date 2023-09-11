@@ -2,12 +2,12 @@ package Domain;
 
 import Domain.Enum.Status;
 
-import java.util.ArrayList;
 
 public class BookCopy {
-    private int id;
-    private Status status ;
 
+    private int id;
+    private int bookIsbn;
+    private Status status ;
     private Book book ;
 
 
@@ -15,18 +15,14 @@ public class BookCopy {
     public BookCopy(){
 
     }
-    public BookCopy(int id , Status status ) {
-        this.id = id;
+
+    public BookCopy(int bookIsbn, Status status, Book book) {
+        this.bookIsbn = bookIsbn;
         this.status = status;
-    }
-    //id
-    public int getId() {
-        return id;
+        this.book = book;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
     //Status
     public Status getStatus(){
         return status ;
@@ -45,9 +41,25 @@ public class BookCopy {
     @Override
     public String toString() {
         return "BookCopy{" +
-                "id=" + id +
+                "bookisbn=" + bookIsbn +
                 ", status=" + status +
                 ", book=" + book.getTitle() +
                 '}';
+    }
+
+    public int getBookIsbn() {
+        return bookIsbn;
+    }
+
+    public void setBookIsbn(int bookIsbn) {
+        this.bookIsbn = bookIsbn;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

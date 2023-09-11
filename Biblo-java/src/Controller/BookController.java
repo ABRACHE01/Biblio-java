@@ -17,6 +17,9 @@ public class BookController {
         bookService.addBook(book);
     }
 
+    public List<Book> searchBooks(String key) {
+       return  bookService.searchBooks(key);
+    }
     public List<Book> getAllBooks() {
         return bookService.getAllBooks();
     }

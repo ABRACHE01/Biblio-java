@@ -1,18 +1,22 @@
 package Domain;
 
-import java.util.ArrayList;
 public class Client {
+
+
     private int member_number ;
+    private int cin ;
     private String client_name ;
 
     public Client(){
 
     }
 
-    public Client(int member_number , String client_name ){
-        this.member_number = member_number ;
-        this.client_name = client_name ;
+    public Client(int member_number, int cin, String client_name) {
+        this.member_number = member_number;
+        this.cin = cin ;
+        this.client_name = client_name;
     }
+
 
     public int getMember_number() {
         return member_number;
@@ -35,7 +39,17 @@ public class Client {
     public String toString() {
         return "Client{" +
                 "member_number=" + member_number +
+                "cin=" + cin +
                 ", client_name='" + client_name + '\'' +
                 '}';
+    }
+
+
+    public int getCin() {
+        return cin;
+    }
+
+    public void setCin(int cin) {
+        this.cin = cin;
     }
 }

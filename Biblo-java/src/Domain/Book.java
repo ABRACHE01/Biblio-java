@@ -1,6 +1,5 @@
 package Domain;
 
-import java.util.ArrayList;
 public class Book {
     private int isbn;
     private String title;
@@ -50,6 +49,7 @@ public class Book {
                 "isbn=" + isbn +
                 ", title='" + title + '\'' +
                 ", countity=" + countity +
+                ", author =" + author +
                 '}';
     }
 
