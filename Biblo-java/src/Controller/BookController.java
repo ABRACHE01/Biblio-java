@@ -37,5 +37,6 @@ public class BookController {
 
     public int getBookCountByStatus(Status status) {
         return  bookService.getBookCountByStatus(status);
+        
     }
 }

@@ -1,14 +1,19 @@
 package Domain;
+
 import Controller.BookController;
 import Controller.ReservationController;
 import Domain.Enum.Status;
 
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
-public class TestClass {
 
+public class TestClass {
+    public static boolean isInteger(double number) {
+        return number == (int) number;
+    }
     public static void main(String[] args) {
         BookController bookController = new BookController();
         ReservationController reservationController = new ReservationController();
@@ -46,53 +51,73 @@ public class TestClass {
                     int quantity = 0;
                     String author = "";
 
+
                     boolean isValidIsbn = false;
                     while (!isValidIsbn) {
                         System.out.println("Enter the book ISBN:");
-                        isbn = scanner.nextInt();
-                        scanner.nextLine();
+                        if (scanner.hasNextInt()) {
+                            isbn = scanner.nextInt();
+                            scanner.nextLine();
 
-                        if (isbn <= 0) {
-                            System.out.println("Invalid ISBN. ISBN must be a positive integer.");
+                            if (isbn <= 0) {
+                                System.out.println("Invalid ISBN. ISBN must be a positive integer.");
+                            } else {
+                                isValidIsbn = true;
+                            }
                         } else {
-                            isValidIsbn = true;
+                            System.out.println("Invalid input. ISBN must be an integer.");
+                            scanner.nextLine();
                         }
                     }
 
                     boolean isValidTitle = false;
                     while (!isValidTitle) {
                         System.out.println("Enter the book title:");
-                        title = scanner.nextLine();
-
-                        if (title.isEmpty()) {
-                            System.out.println("Invalid title. Title must not be empty.");
+                        if (scanner.hasNextLine()) {
+                            title = scanner.nextLine();
+                            if (title.isEmpty()) {
+                                System.out.println("Invalid title. Title must not be empty.");
+                            } else {
+                                isValidTitle = true;
+                            }
                         } else {
-                            isValidTitle = true;
+                            System.out.println("Invalid input. please enter a String value .");
+                            scanner.nextLine();
                         }
                     }
 
                     boolean isValidQuantity = false;
                     while (!isValidQuantity) {
                         System.out.println("Enter the book quantity:");
-                        quantity = scanner.nextInt();
-                        scanner.nextLine();
+                        if (scanner.hasNextInt()) {
+                            quantity = scanner.nextInt();
+                            scanner.nextLine();
 
-                        if (quantity < 0) {
-                            System.out.println("Invalid quantity. Quantity must be a non-negative integer.");
+                            if (quantity < 0) {
+                                System.out.println("Invalid quantity. Quantity must be a non-negative integer.");
+                            } else {
+                                isValidQuantity = true;
+                            }
                         } else {
-                            isValidQuantity = true;
+                            System.out.println("Invalid input. Quantity must be an integer.");
+                            scanner.nextLine();
                         }
                     }
 
                     boolean isValidAuthor = false;
                     while (!isValidAuthor) {
                         System.out.println("Enter the author name:");
-                        author = scanner.nextLine();
+                        if (scanner.hasNextLine()) {
+                            author = scanner.nextLine();
 
-                        if (author.isEmpty()) {
-                            System.out.println("Invalid author name. Author name must not be empty.");
+                            if (author.isEmpty()) {
+                                System.out.println("Invalid author name. Author name must not be empty.");
+                            } else {
+                                isValidAuthor = true;
+                            }
                         } else {
-                            isValidAuthor = true;
+                            System.out.println("Invalid input. author must be String .");
+                            scanner.nextLine();
                         }
                     }
 
@@ -101,9 +126,27 @@ public class TestClass {
                     break;
 
                 case 2:
-                    System.out.println("Enter the book ISBN to update:");
-                    int updateIsbn = scanner.nextInt();
-                    scanner.nextLine();
+
+
+
+                    boolean isValidNewISBN = false;
+                    int updateIsbn = 0;
+                    while (!isValidNewISBN) {
+                        System.out.println("Enter the book ISBN to update:");
+                        if (scanner.hasNextInt()) {
+                            updateIsbn = scanner.nextInt();
+                            scanner.nextLine();
+                            if (!reservationController.bookExists(updateIsbn)) {
+                                System.out.println("Book with ISBN " + updateIsbn + " does not exist.");
+                            } else {
+                                isValidNewISBN = true;
+                            }
+                        } else {
+                            System.out.println("Invalid ISBN. the isbn must be integer .");
+                            scanner.nextLine();
+                        }
+
+                    }
 
 
                     boolean isValidNewTitle = false;
@@ -114,6 +157,7 @@ public class TestClass {
 
                         if (newTitle.isEmpty()) {
                             System.out.println("Invalid title. Title must not be empty.");
+
                         } else {
                             isValidNewTitle = true;
                         }
@@ -156,10 +200,26 @@ public class TestClass {
                     break;
 
                 case 3:
-                    System.out.println("Enter the book ISBN to delete:");
-                    int deleteId = scanner.nextInt();
-                    bookController.deleteBook(deleteId);
-                    System.out.println("Book deleted successfully!");
+                    boolean invalidDeleteBook = false;
+                    while (!invalidDeleteBook) {
+                        System.out.println("Enter the book ISBN to delete:");
+                        if (scanner.hasNextInt()) {
+                            int deleteId = scanner.nextInt();
+                            if (!reservationController.bookExists(deleteId)) {
+                                System.out.println("Book with ISBN " + deleteId + " does not exist.");
+                            } else {
+                                bookController.deleteBook(deleteId);
+                                System.out.println("Book deleted successfully!");
+                                invalidDeleteBook = true;
+                            }
+
+                        } else {
+                            System.out.println("Invalid Isbn. ISBN3 must be integer .");
+                            scanner.nextLine();
+                        }
+                    }
+
+
                     break;
 
                 case 4:
@@ -196,29 +256,60 @@ public class TestClass {
                         }
                     }
                     break;
+                case 6:
+                    int reserIsbn = 0;
 
-                case 6 :
-                    System.out.println("Enter the book ISBN:");
-                    int reserIsbn = scanner.nextInt();
-                    scanner.nextLine();
+                    boolean isValidreservIsbn = false;
+                    while (!isValidreservIsbn) {
+                        System.out.println("Enter the book ISBN:");
+                        if (scanner.hasNextInt()) {
+                            reserIsbn = scanner.nextInt();
+                            scanner.nextLine();
+                            if (!reservationController.bookExists(reserIsbn)) {
+                                System.out.println("Book with ISBN " + reserIsbn + " does not exist.");
 
+                            } else {
+                                isValidreservIsbn = true;
+                            }
 
-                    if (!reservationController.bookExists(reserIsbn)) {
-                        System.out.println("Book with ISBN " + reserIsbn + " does not exist.");
-                        break;
+                        } else {
+                            System.out.println("Invalid ISBN. please enter a integer value .");
+                            scanner.nextLine();
+                        }
                     }
 
-                    System.out.println("Enter the client CIN:");
-                    int cin = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("Enter the client member number:");
-                    int memberNumber = scanner.nextInt();
-                    scanner.nextLine();
+                    boolean isValidreservCIN = false;
+                    int cin = 0;
+                    while (!isValidreservCIN) {
+                        System.out.println("Enter the client CIN:");
+                        if (scanner.hasNextInt()) {
+                            cin = scanner.nextInt();
+                            scanner.nextLine();
+                            isValidreservCIN = true;
+                        } else {
+                            System.out.println("Invalid CIN. please enter a integer value .");
+                            scanner.nextLine();
+                        }
+                    }
+
+                    boolean isValidresClientNumber = false;
+                    int memberNumber = 0;
+                    while (!isValidresClientNumber) {
+                        System.out.println("Enter the client member number:");
+                        if (scanner.hasNextInt()) {
+                            memberNumber = scanner.nextInt();
+                            scanner.nextLine();
+                            isValidresClientNumber = true;
+                        } else {
+                            System.out.println("Invalid number mumber . please enter an integer value .");
+                            scanner.nextLine();
+                        }
+                    }
+
                     System.out.println("Enter the client name:");
                     String clientName = scanner.nextLine();
-                    System.out.println("Enter the date of borrowing (YYYY-MM-DD):");
-                    String borrowingDateStr = scanner.nextLine();
-                    Date dateOfBorrowing = Date.valueOf(borrowingDateStr);
+                    scanner.nextLine();
+
                     System.out.println("Enter the date of return (YYYY-MM-DD):");
                     String returnDateStr = scanner.nextLine();
                     Date dateOfReturn = Date.valueOf(returnDateStr);
@@ -227,19 +318,49 @@ public class TestClass {
                     client.setMemberNumber(memberNumber);
                     client.setClientName(clientName);
 
-                    reservationController.addReservation(reserIsbn, Status.BORROWED, client, dateOfBorrowing, dateOfReturn);
+                    Calendar calendar = Calendar.getInstance();
+                    java.util.Date dateOfBorrowing = calendar.getTime();
+                    java.sql.Date sqlDateOfBorrowing = new java.sql.Date(dateOfBorrowing.getTime());
+
+                    reservationController.addReservation(reserIsbn, Status.BORROWED, client, sqlDateOfBorrowing, dateOfReturn);
 
                     System.out.println("Reservation added successfully!");
+
                     break;
 
                 case 7:
-                    System.out.println("Enter the book ISBN:");
-                    int returnIsbn = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("Enter the client member number :");
-                    int returnMemberNumber = scanner.nextInt();
-                    scanner.nextLine();
+                    int returnIsbn = 0;
+                    int returnMemberNumber = 0;
 
+                    boolean isValidReturnSbn = false;
+                    while (!isValidReturnSbn) {
+                        System.out.println("Enter the book ISBN:");
+                        if (scanner.hasNextInt()) {
+                            returnIsbn = scanner.nextInt();
+                            if (!reservationController.bookExists(returnIsbn)) {
+                                System.out.println("Book with ISBN " + returnIsbn + " does not exist.");
+                            } else {
+                                isValidReturnSbn = true;
+                            }
+
+                        } else {
+                            System.out.println("Invalid ISBN. please enter a integer value .");
+                            scanner.nextLine();
+                        }
+                    }
+
+                    boolean isValidReturnMn = false;
+                    while (!isValidReturnMn) {
+                        System.out.println("Enter the client member number :");
+                        if (scanner.hasNextInt()) {
+                            returnMemberNumber = scanner.nextInt();
+                            scanner.nextLine();
+                            isValidReturnMn = true;
+                        } else {
+                            System.out.println("Invalid member number. please enter a integer value .");
+                            scanner.nextLine();
+                        }
+                    }
                     reservationController.returnBook(returnIsbn, returnMemberNumber);
 
                     System.out.println("Book returned successfully!");
@@ -252,11 +373,13 @@ public class TestClass {
                         System.out.println("No reservations found.");
                     } else {
                         System.out.println("List of reservations:");
-                        System.out.printf("%-15s %-20s %-10s %-20s %-20s%n", "book_ISBN", "client_name", "status", "cin" , "member number");
+                        System.out.printf("%-15s %-20s %-10s %-20s  %-20s %-20s%n", "book_ISBN", "client_name", "status", "cin", "member number", "date_of_return");
 
                         for (Reservation reservation : reservations) {
-                            System.out.printf("%-15d %-20s %-10s %-20s %-20d%n",
-                                    reservation.getIsbn(), reservation.getClient().getClientName(), reservation.getStatus().name(), reservation.getClient().getCin() ,reservation.getClient().getMemberNumber() );
+                            System.out.printf("%-15d %-20s %-10s %-20s %-20s %-20s%n",
+                                    reservation.getIsbn(), reservation.getClient().getClientName(),
+                                    reservation.getStatus().name(), reservation.getClient().getCin(),
+                                    reservation.getClient().getMemberNumber(), reservation.getDate_of_return().toString());
                         }
                     }
 
@@ -266,9 +389,10 @@ public class TestClass {
                 case 9:
                     System.out.println("Book Statistics:");
                     bookController.getBookCountByStatus(Status.LOST);
-                   bookController.getBookCountByStatus(Status.BORROWED);
-                 bookController.getBookCountByStatus(Status.AVAILABLE);
-
+                    bookController.getBookCountByStatus(Status.BORROWED);
+                    bookController.getBookCountByStatus(Status.AVAILABLE);
+                    long countAllbooks = bookController.getAllBooks().stream().count();
+                    System.out.println("books :9" + countAllbooks);
                     break;
 
                 case 10:
